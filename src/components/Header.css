@@ -1,0 +1,24 @@
+.w-100 {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+.logo-text {
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
