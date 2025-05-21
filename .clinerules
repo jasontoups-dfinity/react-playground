@@ -88,6 +88,36 @@ export const Component: React.FC<ComponentProps> = ({
 };
 ```
 
+### Adding ShadCN Components
+
+To add new ShadCN components to the project:
+
+1. Use the shadcn CLI to add the component:
+
+   ```bash
+   npx shadcn-ui@latest add [component-name]
+   # For example:
+   npx shadcn-ui@latest add dialog
+   ```
+
+2. This will:
+
+   - Add the component to the `/src/components/ui/` directory
+   - Install any required dependencies
+   - Set up the necessary CSS variables
+
+3. For components with multiple parts (like Dialog), all related components will be added:
+   ```typescript
+   // Example: Dialog adds these components
+   Dialog;
+   DialogContent;
+   DialogDescription;
+   DialogFooter;
+   DialogHeader;
+   DialogTitle;
+   DialogTrigger;
+   ```
+
 ### ShadCN Component Usage
 
 When using ShadCN components:
@@ -211,6 +241,15 @@ The project uses React Router for routing:
 - Development server: `npm run dev`
 - Production build: `npm run build`
 - Preview production build: `npm run preview`
+
+### Development Server Management
+
+- The development server is typically kept running continuously during work sessions
+- Do not suggest starting the development server with `npm run dev` unless:
+  1. It was explicitly mentioned that the server was stopped
+  2. A significant change was made that requires server restart (e.g., changes to vite.config.ts)
+  3. Troubleshooting server-related issues
+- When testing changes, assume the development server is already running and the changes will be automatically applied through hot module replacement
 
 ## Workflow Tips
 
