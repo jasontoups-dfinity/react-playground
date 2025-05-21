@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ProjectButton from './ProjectButton';
 import './Main.css';
 import reactLogo from '../assets/logos/react.svg';
 import viteLogo from '../assets/logos/vite.svg';
 import tailwindLogo from '../assets/logos/tailwind.svg';
 import shadcnLogo from '../assets/logos/shadcn.svg';
+import { usePageTitle } from '../lib/TitleContext';
 
 const Main: React.FC = () => {
+  const { setPageTitle } = usePageTitle();
+
+  useEffect(() => {
+    setPageTitle('Home');
+  }, [setPageTitle]);
   const projects = [
     {
       title: 'Component Wrapper',

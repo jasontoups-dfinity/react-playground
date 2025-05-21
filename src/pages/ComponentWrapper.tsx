@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { usePageTitle } from '../lib/TitleContext';
 
 const ComponentWrapper: React.FC = () => {
+  const { setPageTitle } = usePageTitle();
+
+  useEffect(() => {
+    setPageTitle('Component Wrapper');
+  }, [setPageTitle]);
   return (
     <main className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Component Wrapper</h1>
