@@ -188,6 +188,8 @@ This document tracks the development progress of the React Playground template, 
 - **2025-05-21**: Further optimized Header component by moving more styles to Tailwind utilities
 - **2025-05-21**: Enhanced ProjectButton with improved dark mode hover effect for the header text using a light purple pastel color
 - **2025-05-21**: Added a new `--dark-accent` CSS variable for consistent pastel accent colors in dark mode
+- **2025-05-21**: Fixed text wrapping in ProjectButton by adding whitespace-normal to description paragraph
+- **2025-05-21**: Updated ProjectButton text alignment to be left-aligned for better readability
 
 ## Next Actions
 
