@@ -222,6 +222,16 @@ The project uses a design system with these key components:
 - Spacing: Uses Tailwind's spacing scale
 - Components: Uses ShadCN UI components
 
+### Theme Management
+
+- The application supports light and dark themes using Tailwind CSS and CSS variables
+- Theme state is managed through React Context (ThemeContext)
+- Theme preference is persisted in localStorage
+- The theme toggle is located in the header
+- Default theme follows the user's system preference
+- Theme-specific styles are defined in globals.css using CSS variables
+- Use the `dark:` prefix for Tailwind classes that should only apply in dark mode
+
 ### Routing
 
 The project uses React Router for routing:

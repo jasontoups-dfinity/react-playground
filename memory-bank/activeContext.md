@@ -229,5 +229,7 @@ We're configuring the project as a GitHub Template with:
 - **2025-05-21**: Added hover scale animation to technology logos on the homepage (icons only)
 - **2025-05-21**: Added home link to the React Playground header
 - **2025-05-21**: Implemented light/dark theme toggle in the header
+- **2025-05-21**: Refined theme implementation with proper CSS variables and theme-aware styling
+- **2025-05-21**: Fixed theme toggle by removing duplicate styles from index.css
 
 This active context will be updated regularly as the project evolves.

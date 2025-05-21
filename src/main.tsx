@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css'; // Import index.css first for Tailwind directives
-import './globals.css';
+import './index.css'; // Import index.css first for Tailwind imports
+import './globals.css'; // Import globals.css for theme variables and styles
 import App from './App.tsx';
 
 // Set the document title

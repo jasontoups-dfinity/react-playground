@@ -110,17 +110,20 @@ ESLint is configured in `eslint.config.js` with rules for:
 
 ## Key Files and Directories
 
-| Path                 | Purpose                            |
-| -------------------- | ---------------------------------- |
-| `src/main.tsx`       | Application entry point            |
-| `src/App.tsx`        | Root component with routing        |
-| `src/components/`    | Reusable components                |
-| `src/components/ui/` | ShadCN UI components               |
-| `src/pages/`         | Page components                    |
-| `src/lib/`           | Utility functions                  |
-| `src/assets/`        | Static assets                      |
-| `src/globals.css`    | Global styles and Tailwind imports |
-| `public/`            | Static files served as-is          |
+| Path                             | Purpose                            |
+| -------------------------------- | ---------------------------------- |
+| `src/main.tsx`                   | Application entry point            |
+| `src/App.tsx`                    | Root component with routing        |
+| `src/components/`                | Reusable components                |
+| `src/components/ui/`             | ShadCN UI components               |
+| `src/components/ThemeToggle.tsx` | Theme toggle component             |
+| `src/pages/`                     | Page components                    |
+| `src/lib/`                       | Utility functions                  |
+| `src/lib/ThemeContext.tsx`       | Theme state management             |
+| `src/lib/TitleContext.tsx`       | Page title management              |
+| `src/assets/`                    | Static assets                      |
+| `src/globals.css`                | Global styles and Tailwind imports |
+| `public/`                        | Static files served as-is          |
 
 ## Build and Deployment
 
@@ -169,6 +172,41 @@ export default {
 
 // CSS file
 @import 'tailwindcss';
+```
+
+## Theme Management
+
+The application supports both light and dark themes through a combination of React Context and CSS variables:
+
+### Implementation Details
+
+1. **Theme State Management**:
+
+   - `ThemeContext.tsx` provides a React Context for theme state management
+   - Theme preference is stored in localStorage for persistence
+   - System preference detection via `prefers-color-scheme` media query
+   - Theme toggle component in the header for user control
+
+2. **CSS Implementation**:
+
+   - Theme variables defined in `globals.css` using CSS custom properties
+   - Two sets of variables: one for light theme (`:root`) and one for dark theme (`.dark`)
+   - Tailwind's dark mode is configured to use the `.dark` class
+   - Components use theme-aware styling with the `dark:` prefix for dark mode styles
+
+3. **Theme Toggle Component**:
+   - Located in the header for easy access
+   - Shows sun icon in dark mode and moon icon in light mode
+   - Smooth transitions between themes
+   - Accessible with proper aria labels
+
+### Usage
+
+To make components theme-aware:
+
+```tsx
+// Example of theme-aware component
+<div className="bg-white text-black dark:bg-gray-800 dark:text-white">Theme-aware content</div>
 ```
 
 ## ShadCN UI Integration
