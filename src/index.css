@@ -27,6 +27,10 @@ body {
   height: 100vh;
 }
 
+main {
+  padding: 2rem;
+}
+
 #root {
   margin: 0;
   padding: 0;
