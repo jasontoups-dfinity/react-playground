@@ -233,5 +233,6 @@ We're configuring the project as a GitHub Template with:
 - **2025-05-21**: Fixed theme toggle by removing duplicate styles from index.css
 - **2025-05-21**: Added white outline to ShadCN logo for better visibility in dark mode
 - **2025-05-21**: Optimized CSS by replacing custom classes with Tailwind utilities and removing unnecessary CSS files
+- **2025-05-21**: Further optimized Header component by moving more styles to Tailwind utilities
 
 This active context will be updated regularly as the project evolves.

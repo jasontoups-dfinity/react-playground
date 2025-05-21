@@ -1,4 +1,4 @@
-/* Component-specific styles only */
+/* Component-specific styles that can't be easily expressed with Tailwind */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -10,23 +10,4 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
-}
-.logo-text {
-  font-weight: bold;
-  font-size: 1rem;
-  line-height: 0.9em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.header-link {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.header-link:hover {
-  opacity: 0.8;
 }

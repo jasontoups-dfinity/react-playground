@@ -7,9 +7,11 @@ import ThemeToggle from './ThemeToggle';
 const Header: React.FC = () => {
   return (
     <header className="w-full flex flex-row justify-between items-center p-5">
-      <Link to="/" className="header-link flex flex-row items-center">
+      <Link
+        to="/"
+        className="no-underline text-inherit cursor-pointer transition-opacity duration-200 ease-in-out hover:opacity-80 flex flex-row items-center">
         <img src={dfinityLogo} alt="DFINITY Logo" className="mr-1" />
-        <span className="logo-text">
+        <span className="font-bold text-base leading-tight flex flex-col justify-center">
           REACT
           <br />
           PLAYGROUND
