@@ -6,7 +6,7 @@ import ThemeToggle from './ThemeToggle';
 
 const Header: React.FC = () => {
   return (
-    <header className="w-100 flex flex-row justify-between items-center">
+    <header className="w-full flex flex-row justify-between items-center p-5">
       <Link to="/" className="header-link flex flex-row items-center">
         <img src={dfinityLogo} alt="DFINITY Logo" className="mr-1" />
         <span className="logo-text">

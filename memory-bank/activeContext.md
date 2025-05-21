@@ -1,8 +1,4 @@
-| Column A | Column B | Column C                             |
-| -------- | -------- | ------------------------------------ |
-| A1       | B1       | C1                                   |
-| A2       | B2       | C2                                   |
-| A3       | B3       | C3# Active Context: React Playground |
+# Active Context: React Playground
 
 This document captures the current state, recent changes, and active development focus of the React Playground template.
 
@@ -236,5 +232,6 @@ We're configuring the project as a GitHub Template with:
 - **2025-05-21**: Refined theme implementation with proper CSS variables and theme-aware styling
 - **2025-05-21**: Fixed theme toggle by removing duplicate styles from index.css
 - **2025-05-21**: Added white outline to ShadCN logo for better visibility in dark mode
+- **2025-05-21**: Optimized CSS by replacing custom classes with Tailwind utilities and removing unnecessary CSS files
 
 This active context will be updated regularly as the project evolves.

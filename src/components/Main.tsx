@@ -27,8 +27,8 @@ const Main: React.FC = () => {
   ];
 
   return (
-    <main className="main-container">
-      <div className="content p-6">
+    <main className="p-8 flex flex-col items-center justify-center w-full h-full">
+      <div className="max-w-7xl mx-auto text-center p-6">
         <h1 className="text-4xl font-bold mb-3">React Playground</h1>
         <p className="text-xl mb-10">Build something quickly.™️</p>
 
