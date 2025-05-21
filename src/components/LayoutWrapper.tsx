@@ -17,13 +17,26 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({ children }) => {
     mobile: 'max-w-sm', // ~384px
   };
 
+  // Display names for the width presets
+  const presetLabels: Record<PageWidthPreset, string> = {
+    'full-width': 'Full Width',
+    desktop: 'Desktop (1152px)',
+    tablet: 'Tablet (768px)',
+    mobile: 'Mobile (384px)',
+  };
+
   return (
-    <main className="outer-container flex flex-col items-center justify-center w-full h-full bg-background/50">
+    <main className="outer-container flex flex-col items-center justify-center w-full h-full bg-muted/20">
       <div
-        className={`resizable-container flex flex-col items-center justify-center h-full ${widthClasses[widthPreset]} mx-auto transition-all duration-300 bg-background`}
+        className={`resizable-container flex flex-col items-center justify-center h-full ${widthClasses[widthPreset]} mx-auto transition-all duration-300 relative bg-background`}
         style={{
-          boxShadow: widthPreset !== 'full-width' ? '0 0 0 1px rgba(0,0,0,0.05)' : undefined,
+          boxShadow: widthPreset !== 'full-width' ? '0 0 0 2px var(--border)' : undefined,
         }}>
+        {widthPreset !== 'full-width' && (
+          <div className="absolute top-0 right-0 bg-muted text-muted-foreground text-xs px-2 py-1 rounded-bl">
+            {presetLabels[widthPreset]}
+          </div>
+        )}
         {children}
       </div>
     </main>

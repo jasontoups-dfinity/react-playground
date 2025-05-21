@@ -6,6 +6,7 @@ import viteLogo from '../assets/logos/vite.svg';
 import tailwindLogo from '../assets/logos/tailwind.svg';
 import shadcnLogo from '../assets/logos/shadcn.svg';
 import { usePageTitle } from '../lib/TitleContext';
+import ContentContainer from './ContentContainer';
 
 const Main: React.FC = () => {
   const { setPageTitle } = usePageTitle();
@@ -27,7 +28,7 @@ const Main: React.FC = () => {
   ];
 
   return (
-    <div className="content-container max-w-7xl mx-auto text-center p-6">
+    <ContentContainer>
       <h1 className="text-4xl font-bold mb-3">React Playground</h1>
       <p className="text-xl mb-10">Build something quickly.™️</p>
 
@@ -96,7 +97,7 @@ const Main: React.FC = () => {
           />
         ))}
       </div>
-    </div>
+    </ContentContainer>
   );
 };
 
