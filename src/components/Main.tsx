@@ -79,7 +79,7 @@ const Main: React.FC = () => {
               <img
                 src={shadcnLogo}
                 alt="ShadCN UI"
-                className="h-12 mb-2 text-current hover:scale-110 transition-transform duration-200"
+                className="h-12 mb-2 text-current hover:scale-110 transition-transform duration-200 shadcn-logo-outline"
               />
               <span className="text-sm">ShadCN UI</span>
             </a>

@@ -13,3 +13,11 @@
   margin: 0 auto;
   text-align: center;
 }
+
+.shadcn-logo-outline {
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
+}
+
+.dark .shadcn-logo-outline {
+  filter: drop-shadow(0 0 1px white);
+}
