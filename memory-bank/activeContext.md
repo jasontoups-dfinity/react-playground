@@ -175,7 +175,7 @@ We're configuring the project as a GitHub Template with:
 3. ✅ Implement browser title management
 4. ✅ Update ShadCN UI documentation
 5. ✅ Configure ShadCN UI import aliases
-6. ⬜ Add more ShadCN UI component examples
+6. 🔄 Add more ShadCN UI component examples
 7. ⬜ Create a component showcase page
 8. ⬜ Add more detailed comments to key files
 
@@ -223,5 +223,6 @@ We're configuring the project as a GitHub Template with:
 - **2025-05-21**: Implemented browser title management with custom Vite plugin and context-based approach
 - **2025-05-21**: Enhanced documentation with ShadCN UI Vite installation instructions
 - **2025-05-21**: Fixed ShadCN import alias configuration and initialized ShadCN UI with Slate color scheme
+- **2025-05-21**: Added ShadCN UI button component and updated import paths to use the @/ alias
 
 This active context will be updated regularly as the project evolves.
