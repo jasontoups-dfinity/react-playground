@@ -251,6 +251,13 @@ The project uses React Router for routing:
   3. Troubleshooting server-related issues
 - When testing changes, assume the development server is already running and the changes will be automatically applied through hot module replacement
 
+### Testing Responsibility
+
+- Do not attempt to test changes by running the development server or using browser_action
+- The user is responsible for all testing of implemented changes
+- Focus solely on implementing requested changes correctly
+- Assume changes are working unless the user indicates otherwise
+
 ## Workflow Tips
 
 1. Start with the component structure and props

@@ -35,22 +35,54 @@ const Main: React.FC = () => {
         <div className="mb-12">
           <p className="text-lg mb-4">Built with:</p>
           <div className="flex flex-wrap items-center justify-center gap-8">
-            <div className="flex flex-col items-center">
-              <img src={reactLogo} alt="React" className="h-12 mb-2" />
+            <a
+              href="https://react.dev/reference/react"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center hover:opacity-80 transition-opacity">
+              <img
+                src={reactLogo}
+                alt="React"
+                className="h-12 mb-2 hover:scale-110 transition-transform duration-200"
+              />
               <span className="text-sm">React</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <img src={viteLogo} alt="Vite" className="h-12 mb-2" />
+            </a>
+            <a
+              href="https://vite.dev/guide/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center hover:opacity-80 transition-opacity">
+              <img
+                src={viteLogo}
+                alt="Vite"
+                className="h-12 mb-2 hover:scale-110 transition-transform duration-200"
+              />
               <span className="text-sm">Vite</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <img src={tailwindLogo} alt="Tailwind CSS" className="h-12 mb-2" />
+            </a>
+            <a
+              href="https://nerdcave.com/tailwind-cheat-sheet"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center hover:opacity-80 transition-opacity">
+              <img
+                src={tailwindLogo}
+                alt="Tailwind CSS"
+                className="h-12 mb-2 hover:scale-110 transition-transform duration-200"
+              />
               <span className="text-sm">Tailwind CSS</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <img src={shadcnLogo} alt="ShadCN UI" className="h-12 mb-2 text-current" />
+            </a>
+            <a
+              href="https://ui.shadcn.com/docs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center hover:opacity-80 transition-opacity">
+              <img
+                src={shadcnLogo}
+                alt="ShadCN UI"
+                className="h-12 mb-2 text-current hover:scale-110 transition-transform duration-200"
+              />
               <span className="text-sm">ShadCN UI</span>
-            </div>
+            </a>
           </div>
         </div>
 

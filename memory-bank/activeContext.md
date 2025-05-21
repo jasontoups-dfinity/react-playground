@@ -183,7 +183,7 @@ We're configuring the project as a GitHub Template with:
 
 1. ⬜ Add unit testing setup with Vitest
 2. ⬜ Create example form with validation
-3. ⬜ Add dark mode toggle functionality
+3. ✅ Add dark mode toggle functionality
 4. ⬜ Implement responsive design examples
 5. ⬜ Add GitHub Template configuration
 
@@ -224,5 +224,10 @@ We're configuring the project as a GitHub Template with:
 - **2025-05-21**: Enhanced documentation with ShadCN UI Vite installation instructions
 - **2025-05-21**: Fixed ShadCN import alias configuration and initialized ShadCN UI with Slate color scheme
 - **2025-05-21**: Added ShadCN UI button component and updated import paths to use the @/ alias
+- **2025-05-21**: Added documentation links to technology logos on the homepage
+- **2025-05-21**: Updated .clinerules with Testing Responsibility section
+- **2025-05-21**: Added hover scale animation to technology logos on the homepage (icons only)
+- **2025-05-21**: Added home link to the React Playground header
+- **2025-05-21**: Implemented light/dark theme toggle in the header
 
 This active context will be updated regularly as the project evolves.

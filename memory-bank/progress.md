@@ -77,7 +77,7 @@ This document tracks the development progress of the React Playground template, 
 
 ### Enhanced Functionality
 
-- ⬜ Dark mode support
+- ✅ Dark mode support
 - ⬜ Responsive design examples
 - ⬜ Accessibility enhancements
 - ⬜ Animation examples
@@ -143,7 +143,7 @@ This document tracks the development progress of the React Playground template, 
 ### Milestone 3: Enhanced Features ⬜
 
 - Additional components
-- Dark mode
+- ✅ Dark mode
 - Responsive design
 - Accessibility improvements
 
@@ -176,13 +176,18 @@ This document tracks the development progress of the React Playground template, 
 - **2025-05-21**: Updated .clinerules with ShadCN component addition instructions
 - **2025-05-21**: Fixed ShadCN import alias configuration and successfully initialized ShadCN UI
 - **2025-05-21**: Added ShadCN UI button component and updated import paths to use the @/ alias
+- **2025-05-21**: Added documentation links to technology logos on the homepage
+- **2025-05-21**: Updated .clinerules with Testing Responsibility section
+- **2025-05-21**: Added hover scale animation to technology logos on the homepage (icons only)
+- **2025-05-21**: Added home link to the React Playground header
+- **2025-05-21**: Implemented light/dark theme toggle in the header
 
 ## Next Actions
 
 1. ✅ Add ShadCN UI components using the CLI
 2. Create component showcase page
 3. Improve mobile responsiveness
-4. Add dark mode toggle
+4. ✅ Add dark mode toggle
 5. Enhance component documentation
 6. Implement additional page routes with dynamic titles
 
