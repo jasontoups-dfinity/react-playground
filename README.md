@@ -6,7 +6,7 @@ A modern, feature-rich GitHub template for rapidly prototyping React application
 
 ## Overview
 
-React Playground is a carefully crafted GitHub template designed to help teams quickly prototype and experiment with React applications. Built with the latest technologies including React 19, TypeScript, Tailwind CSS v4, and ShadCN UI components, it provides a clean, modern starting point without the complexity of production applications.
+React Playground is a carefully crafted GitHub template designed to help us quickly prototype and experiment with React applications. Built with the latest technologies including React 19, TypeScript, Tailwind CSS v4, and ShadCN UI components, it provides a clean, modern starting point without the complexity of production applications.
 
 ## Features
 
@@ -21,13 +21,13 @@ React Playground is a carefully crafted GitHub template designed to help teams q
 
 ### Key Features
 
+- ✅ **Responsive Design Testing** - Built-in developer tools for testing responsive layouts across device sizes
+- ✅ **Page Width Control** - Interactive device width simulator with preset breakpoints for different screen sizes
 - ✅ **Dark/Light Mode** - Built-in theme toggle with system preference detection
-- ✅ **Responsive Design** - Mobile-first approach with responsive components
-- ✅ **Page Width Control** - Test different device widths with a simple dropdown
 - ✅ **Dynamic Page Titles** - Context-based page title management
+- ✅ **Accessible Components** - Built with accessibility in mind
 - ✅ **Type Safety** - Full TypeScript integration
 - ✅ **Modern Tooling** - ESLint, TypeScript ESLint, and Vite
-- ✅ **Accessible Components** - Built with accessibility in mind
 
 ## Getting Started
 
@@ -83,6 +83,26 @@ npx shadcn-ui@latest add [component-name]
 # For example:
 npx shadcn-ui@latest add dialog
 ```
+
+## Responsive Design Testing
+
+### Page Width Control
+
+The React Playground includes a powerful feature for testing responsive designs across different device widths. In the header, you'll find a "Layout" dropdown menu that allows you to instantly switch between different device width presets:
+
+- **Full Width**: Uses 100% of the browser viewport width
+- **Desktop**: Constrains content to ~1152px (Tailwind's max-w-6xl)
+- **Tablet**: Simulates tablet devices at ~768px (Tailwind's max-w-md)
+- **Mobile**: Simulates mobile devices at ~384px (Tailwind's max-w-sm)
+
+This feature provides several benefits:
+
+1. **Instant Visualization**: See how your UI adapts to different screen sizes without resizing your browser window
+2. **Consistent Testing**: Test at standardized breakpoints that match common device sizes
+3. **Visual Indicators**: When using a preset width, a label appears showing the current device mode
+4. **Persistent Settings**: Your selected width preference is saved between sessions
+
+The implementation uses React Context for state management and applies smooth transitions between width changes for a better development experience.
 
 ## Tailwind CSS v4
 
