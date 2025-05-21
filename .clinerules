@@ -1,0 +1,225 @@
+# Cline Rules for React Playground
+
+This file captures project-specific patterns, preferences, and intelligence to help Cline work more effectively with this project.
+
+## Project Structure
+
+- `/src/components/ui/`: Contains ShadCN UI components, do not modify these directly unless necessary
+- `/src/components/`: Contains custom components specific to the project
+- `/src/pages/`: Contains page components that use the components
+- `/src/lib/`: Contains utility functions and helpers
+- `/src/assets/`: Contains static assets like images and icons
+- `/memory-bank/`: Contains project documentation
+
+## Coding Conventions
+
+### TypeScript
+
+- Use TypeScript for all new files
+- Use explicit types for function parameters and return values
+- Use interfaces for object shapes that will be used in multiple places
+- Use type for complex types or unions
+- Use `React.FC<Props>` for functional components with props
+
+```typescript
+// Example component with props
+interface ButtonProps {
+  variant?: 'default' | 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+
+const Button: React.FC<ButtonProps> = ({ variant = 'default', size = 'md', children, onClick }) => {
+  // Component implementation
+};
+```
+
+### React
+
+- Use functional components with hooks
+- Use named exports for components
+- Use destructuring for props
+- Use the `children` prop for component composition
+- Use React.memo for performance optimization when needed
+
+### CSS and Styling
+
+- Use Tailwind CSS utility classes for most styling
+- Use CSS modules for complex components that need specific styling
+- Use CSS variables for theming and design tokens
+- Follow mobile-first responsive design approach
+
+### File Naming
+
+- Use PascalCase for component files: `Button.tsx`, `Header.tsx`
+- Use camelCase for utility files: `utils.ts`, `hooks.ts`
+- Use kebab-case for CSS module files: `button-styles.module.css`
+- Use index.ts files for exporting multiple components from a directory
+
+## Common Patterns
+
+### Component Structure
+
+Components should follow this structure:
+
+```typescript
+// Imports
+import React from 'react';
+import { cn } from '@/lib/utils';
+
+// Types/Interfaces
+interface ComponentProps {
+  // Props definition
+}
+
+// Component
+export const Component: React.FC<ComponentProps> = ({
+  // Destructured props
+}) => {
+  // Hooks
+
+  // Helper functions
+
+  // JSX
+  return (
+    // Component JSX
+  );
+};
+```
+
+### ShadCN Component Usage
+
+When using ShadCN components:
+
+1. Import the component from the ui directory
+2. Use the component with appropriate props
+3. Use the `className` prop to add custom styles
+4. Use the `asChild` prop when needed to render as a different element
+
+```typescript
+import { Button } from '@/components/ui/button';
+
+// Usage
+<Button variant="outline" size="sm" className="custom-class">
+  Click me
+</Button>;
+```
+
+### State Management
+
+For local state, use React hooks:
+
+```typescript
+// Local state
+const [count, setCount] = useState(0);
+
+// Derived state
+const doubleCount = useMemo(() => count * 2, [count]);
+
+// Side effects
+useEffect(() => {
+  document.title = `Count: ${count}`;
+}, [count]);
+```
+
+For more complex state, consider using context:
+
+```typescript
+// Create context
+const CountContext = createContext<{
+  count: number;
+  setCount: (count: number) => void;
+}>({
+  count: 0,
+  setCount: () => {},
+});
+
+// Provider
+export const CountProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [count, setCount] = useState(0);
+
+  return <CountContext.Provider value={{ count, setCount }}>{children}</CountContext.Provider>;
+};
+
+// Custom hook
+export const useCount = () => useContext(CountContext);
+```
+
+## Tailwind CSS v4 Specifics
+
+- Use `@import 'tailwindcss';` instead of `@tailwind` directives
+- Be aware of renamed utilities (e.g., `shadow-sm` is now `shadow-xs`)
+- Use the `@tailwindcss/postcss` plugin in PostCSS config
+- Use arbitrary values with square brackets when needed: `bg-[#ff0000]`
+
+## Common Issues and Solutions
+
+### Tailwind CSS Classes Not Applied
+
+If Tailwind CSS classes are not being applied:
+
+1. Check that `@import 'tailwindcss';` is at the top of your CSS file
+2. Verify that the CSS file is imported in your entry point
+3. Check that the content paths in `tailwind.config.js` include your files
+4. Restart the development server
+
+### ShadCN Component Styling Issues
+
+If ShadCN components don't look right:
+
+1. Check that the CSS variables are defined in your CSS
+2. Verify that the component is imported correctly
+3. Check for conflicting styles
+4. Ensure the component is used with the correct props
+
+### TypeScript Errors
+
+Common TypeScript errors and solutions:
+
+1. **Property does not exist on type**: Check the component props interface
+2. **Type 'string' is not assignable to type...**: Use the correct type or add a type assertion
+3. **Cannot find module**: Check the import path and ensure the file exists
+
+## Project-Specific Knowledge
+
+### Design System
+
+The project uses a design system with these key components:
+
+- Colors: Defined as CSS variables in `globals.css`
+- Typography: Defined as Tailwind classes
+- Spacing: Uses Tailwind's spacing scale
+- Components: Uses ShadCN UI components
+
+### Routing
+
+The project uses React Router for routing:
+
+```typescript
+<Router>
+  <Routes>
+    <Route path="/" element={<Main />} />
+    <Route path="/component-wrapper" element={<ComponentWrapper />} />
+    {/* Additional routes */}
+  </Routes>
+</Router>
+```
+
+### Build and Development
+
+- Development server: `npm run dev`
+- Production build: `npm run build`
+- Preview production build: `npm run preview`
+
+## Workflow Tips
+
+1. Start with the component structure and props
+2. Add the basic JSX structure
+3. Add styling with Tailwind classes
+4. Add state and event handlers
+5. Add any necessary side effects
+6. Test the component
+7. Refactor and optimize if needed
+
+This .clinerules file will be updated as the project evolves and new patterns emerge.
