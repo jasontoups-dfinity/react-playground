@@ -5,21 +5,27 @@ import Footer from './components/Footer';
 import ComponentWrapper from './pages/ComponentWrapper';
 import { TitleProvider } from './lib/TitleContext';
 import { ThemeProvider } from './lib/ThemeContext';
+import { PageWidthProvider } from './lib/PageWidthContext';
+import LayoutWrapper from './components/LayoutWrapper';
 
 function App() {
   return (
     <ThemeProvider>
       <TitleProvider>
-        <Router>
-          <div className="grid grid-rows-[auto_1fr_auto] w-full h-screen">
-            <Header />
-            <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/component-wrapper" element={<ComponentWrapper />} />
-            </Routes>
-            <Footer />
-          </div>
-        </Router>
+        <PageWidthProvider>
+          <Router>
+            <div className="grid grid-rows-[auto_1fr_auto] w-full h-screen">
+              <Header />
+              <LayoutWrapper>
+                <Routes>
+                  <Route path="/" element={<Main />} />
+                  <Route path="/component-wrapper" element={<ComponentWrapper />} />
+                </Routes>
+              </LayoutWrapper>
+              <Footer />
+            </div>
+          </Router>
+        </PageWidthProvider>
       </TitleProvider>
     </ThemeProvider>
   );

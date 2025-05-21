@@ -238,5 +238,51 @@ We're configuring the project as a GitHub Template with:
 - **2025-05-21**: Added a new `--dark-accent` CSS variable for consistent pastel accent colors in dark mode
 - **2025-05-21**: Fixed text wrapping in ProjectButton by adding whitespace-normal to description paragraph
 - **2025-05-21**: Updated ProjectButton text alignment to be left-aligned for better readability
+- **2025-05-21**: Implemented page width control feature for responsive design testing with layout selector in header
+
+## Implemented Feature: Page Width Control
+
+We've implemented a new feature that allows developers to preview pages at different device widths. This helps with responsive design testing and development.
+
+### Feature Overview
+
+1. **Layout Wrapper Component**
+
+   - Create a wrapper component that will be used on every page
+   - Include two container divs: outer-container and resizable-container
+   - The resizable-container will adjust its width based on the selected device preset
+
+2. **Page Width Context**
+
+   - Create a context to manage the current width setting
+   - Store width presets: full-width, desktop, tablet, mobile
+   - Make the setting persistent across page navigation using localStorage
+
+3. **Page Width Selector Dropdown**
+   - Add a dropdown menu next to the theme toggle in the header
+   - Allow selection between different device widths
+   - Show both device type and pixel width in the dropdown options
+
+### Implementation Details
+
+- **Width Presets**:
+
+  - Full Width: 100% of the viewport
+  - Desktop: ~1152px (max-w-6xl)
+  - Tablet: ~768px (max-w-md)
+  - Mobile: ~384px (max-w-sm)
+
+- **Visual Feedback**:
+
+  - Different background colors for the content container and outer container
+  - Subtle border/shadow to visualize container boundaries
+  - Smooth transitions when changing widths
+
+- **Integration**:
+  - Update App component to use the PageWidthProvider
+  - Wrap all routes with the LayoutWrapper component
+  - Modify existing page components to work within the new layout structure
+
+This feature will make it easier to develop and test responsive designs within the React Playground.
 
 This active context will be updated regularly as the project evolves.

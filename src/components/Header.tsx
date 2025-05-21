@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import dfinityLogo from '../assets/dfinity-logo.svg';
 import ThemeToggle from './ThemeToggle';
+import PageWidthSelector from './PageWidthSelector';
 
 const Header: React.FC = () => {
   return (
@@ -17,7 +18,10 @@ const Header: React.FC = () => {
           PLAYGROUND
         </span>
       </Link>
-      <ThemeToggle />
+      <div className="flex items-center">
+        <PageWidthSelector />
+        <ThemeToggle />
+      </div>
     </header>
   );
 };
