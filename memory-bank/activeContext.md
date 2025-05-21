@@ -234,5 +234,7 @@ We're configuring the project as a GitHub Template with:
 - **2025-05-21**: Added white outline to ShadCN logo for better visibility in dark mode
 - **2025-05-21**: Optimized CSS by replacing custom classes with Tailwind utilities and removing unnecessary CSS files
 - **2025-05-21**: Further optimized Header component by moving more styles to Tailwind utilities
+- **2025-05-21**: Enhanced ProjectButton with improved dark mode hover effect for the header text using a light purple pastel color
+- **2025-05-21**: Added a new `--dark-accent` CSS variable for consistent pastel accent colors in dark mode
 
 This active context will be updated regularly as the project evolves.
