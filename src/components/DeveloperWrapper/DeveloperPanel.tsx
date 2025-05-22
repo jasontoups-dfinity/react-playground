@@ -142,7 +142,8 @@ const DeveloperPanel: React.FC<DeveloperPanelProps> = ({
       {/* Resize handle */}
       <div
         className={cn(
-          'absolute bg-muted/10 hover:bg-primary/10 z-10 rounded-full',
+          'absolute bg-muted/10 hover:bg-primary/10 z-10 rounded-full transition-colors duration-150',
+          isResizing && 'bg-primary/20',
           getResizeHandleStyles()
         )}
         onMouseDown={handleResizeStart}>
@@ -150,13 +151,33 @@ const DeveloperPanel: React.FC<DeveloperPanelProps> = ({
         <div className="absolute inset-0 flex items-center justify-center">
           {position === 'bottom' ? (
             <div className="flex flex-col items-center space-y-1">
-              <div className="w-6 h-1.5 bg-muted-foreground/40 rounded-full" />
-              <div className="w-4 h-1 bg-muted-foreground/30 rounded-full" />
+              <div
+                className={cn(
+                  'w-6 h-1.5 rounded-full transition-colors duration-150',
+                  isResizing ? 'bg-primary/60' : 'bg-muted-foreground/40'
+                )}
+              />
+              <div
+                className={cn(
+                  'w-4 h-1 rounded-full transition-colors duration-150',
+                  isResizing ? 'bg-primary/50' : 'bg-muted-foreground/30'
+                )}
+              />
             </div>
           ) : (
             <div className="flex flex-row items-center space-x-1">
-              <div className="h-16 w-1 bg-muted-foreground/40 rounded-full" />
-              <div className="h-10 w-1 bg-muted-foreground/30 rounded-full" />
+              <div
+                className={cn(
+                  'h-16 w-1 rounded-full transition-colors duration-150',
+                  isResizing ? 'bg-primary/60' : 'bg-muted-foreground/40'
+                )}
+              />
+              <div
+                className={cn(
+                  'h-10 w-1 rounded-full transition-colors duration-150',
+                  isResizing ? 'bg-primary/50' : 'bg-muted-foreground/30'
+                )}
+              />
             </div>
           )}
         </div>

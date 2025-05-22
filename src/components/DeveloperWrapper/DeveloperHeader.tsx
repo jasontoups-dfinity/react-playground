@@ -140,7 +140,7 @@ const DeveloperHeader: React.FC<DeveloperHeaderProps> = ({
           logo
         )}
         <span className="font-bold text-base leading-tight flex flex-col justify-center">
-          {appName.toUpperCase()}
+          {appName.toUpperCase()} | Developer Tools
         </span>
       </Link>
       <div className="flex items-center">

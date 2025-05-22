@@ -14,6 +14,7 @@ A customizable wrapper component that provides developer tools for React applica
 - **Resizable Panels**: Adjust panel size with a draggable resize handle
 - **Enhanced Visual Indicators**: Multiple lines for better visibility and usability
 - **Ergonomic Grab Areas**: Larger grab areas for easier resizing
+- **Interactive Feedback**: Active state styling during resizing for better user experience
 
 ## Installation
 

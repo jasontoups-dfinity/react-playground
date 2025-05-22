@@ -18,10 +18,6 @@ const Header: React.FC = () => {
           PLAYGROUND
         </span>
       </Link>
-      <div className="flex items-center">
-        <PageWidthSelector />
-        <ThemeToggle />
-      </div>
     </header>
   );
 };
