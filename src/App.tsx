@@ -16,7 +16,14 @@ function App() {
     <ThemeProvider>
       <TitleProvider>
         <PageWidthProvider>
-          <DeveloperProvider>
+          <DeveloperProvider
+            initialPosition="right"
+            initialEnabledTools={{
+              stateInspector: true,
+              storeInspector: true,
+              performanceMonitor: true,
+              networkMonitor: true,
+            }}>
             <Router>
               <DeveloperWrapper
                 appName="React Playground"

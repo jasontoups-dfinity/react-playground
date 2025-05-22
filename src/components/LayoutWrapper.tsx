@@ -26,9 +26,9 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({ children }) => {
   };
 
   return (
-    <main className="outer-container flex flex-col items-center justify-center w-full h-full bg-muted/20">
+    <main className="flex align-it bg-muted/20">
       <div
-        className={`resizable-container flex flex-col items-center justify-center h-full ${widthClasses[widthPreset]} mx-auto transition-all duration-300 relative bg-background`}
+        className={`resizable-container grid grid-rows-[auto_1fr_auto] w-full h-screen ${widthClasses[widthPreset]} mx-auto transition-all duration-300 relative bg-background`}
         style={{
           boxShadow: widthPreset !== 'full-width' ? '0 0 0 2px var(--border)' : undefined,
         }}>

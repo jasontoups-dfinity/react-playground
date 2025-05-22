@@ -15,14 +15,13 @@ const DeveloperWrapper: React.FC<DeveloperWrapperProps> = ({
   logo = dfinityLogo,
   showLayoutControls = true,
   showThemeToggle = true,
-  enabledTools = {
-    stateInspector: true,
-    storeInspector: true,
-    performanceMonitor: true,
-    networkMonitor: true,
-  },
+  // Keep these props for API compatibility, but don't use them
+  // They're now handled by the DeveloperProvider
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  enabledTools,
   stores = {},
-  defaultPosition = 'right',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  defaultPosition,
   headerClassName,
   panelClassName,
 }) => {
@@ -32,19 +31,12 @@ const DeveloperWrapper: React.FC<DeveloperWrapperProps> = ({
     isPanelOpen,
     position,
     setActivePanel,
+    // Keep these for type compatibility, but don't use them
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     setPosition,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     setEnabledTools,
   } = useDeveloper();
-
-  // Set initial values
-  React.useEffect(() => {
-    if (defaultPosition) {
-      setPosition(defaultPosition);
-    }
-    if (enabledTools) {
-      setEnabledTools(enabledTools);
-    }
-  }, [defaultPosition, enabledTools, setPosition, setEnabledTools]);
 
   // Render the appropriate panel content based on the active panel
   const renderPanelContent = () => {
@@ -63,7 +55,7 @@ const DeveloperWrapper: React.FC<DeveloperWrapperProps> = ({
   };
 
   return (
-    <div className="developer-wrapper flex flex-col min-h-screen">
+    <div className="developer-wrapper flex flex-col ">
       <DeveloperHeader
         appName={appName}
         logo={logo}
@@ -71,18 +63,17 @@ const DeveloperWrapper: React.FC<DeveloperWrapperProps> = ({
         showThemeToggle={showThemeToggle}
         className={headerClassName}
       />
-      <div className="flex-1 relative">
-        {children}
-        {isEnabled && isPanelOpen && activePanel && (
-          <DeveloperPanel
-            isOpen={isPanelOpen}
-            onClose={() => setActivePanel(null)}
-            position={position}
-            className={panelClassName}>
-            {renderPanelContent()}
-          </DeveloperPanel>
-        )}
-      </div>
+
+      {children}
+      {isEnabled && isPanelOpen && activePanel && (
+        <DeveloperPanel
+          isOpen={isPanelOpen}
+          onClose={() => setActivePanel(null)}
+          position={position}
+          className={panelClassName}>
+          {renderPanelContent()}
+        </DeveloperPanel>
+      )}
     </div>
   );
 };
