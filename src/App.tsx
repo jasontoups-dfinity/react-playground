@@ -1,30 +1,35 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import ComponentWrapper from './pages/ComponentWrapper';
 import { TitleProvider } from './lib/TitleContext';
 import { ThemeProvider } from './lib/ThemeContext';
 import { PageWidthProvider } from './lib/PageWidthContext';
-import LayoutWrapper from './components/LayoutWrapper';
+import { DeveloperWrapper, DeveloperProvider } from './components/DeveloperWrapper';
+import dfinityLogo from './assets/dfinity-logo.svg';
 
 function App() {
   return (
     <ThemeProvider>
       <TitleProvider>
         <PageWidthProvider>
-          <Router>
-            <div className="grid grid-rows-[auto_1fr_auto] w-full h-screen">
-              <Header />
-              <LayoutWrapper>
-                <Routes>
-                  <Route path="/" element={<Main />} />
-                  <Route path="/component-wrapper" element={<ComponentWrapper />} />
-                </Routes>
-              </LayoutWrapper>
-              <Footer />
-            </div>
-          </Router>
+          <DeveloperProvider>
+            <Router>
+              <DeveloperWrapper
+                appName="React Playground"
+                logo={dfinityLogo}
+                showLayoutControls={true}
+                showThemeToggle={true}>
+                <div className="flex-1 flex flex-col">
+                  <Routes>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/component-wrapper" element={<ComponentWrapper />} />
+                  </Routes>
+                  <Footer />
+                </div>
+              </DeveloperWrapper>
+            </Router>
+          </DeveloperProvider>
         </PageWidthProvider>
       </TitleProvider>
     </ThemeProvider>

@@ -21,6 +21,7 @@ React Playground is a carefully crafted GitHub template designed to help us quic
 
 ### Key Features
 
+- ✅ **Developer Tools** - Comprehensive developer wrapper with state inspection, performance monitoring, and more
 - ✅ **Responsive Design Testing** - Built-in developer tools for testing responsive layouts across device sizes
 - ✅ **Page Width Control** - Interactive device width simulator with preset breakpoints for different screen sizes
 - ✅ **Dark/Light Mode** - Built-in theme toggle with system preference detection
@@ -83,6 +84,32 @@ npx shadcn-ui@latest add [component-name]
 # For example:
 npx shadcn-ui@latest add dialog
 ```
+
+## Developer Tools
+
+The React Playground includes a comprehensive Developer Wrapper component that provides a suite of tools to help with development and debugging:
+
+### Developer Wrapper Features
+
+- **State Inspector**: View component state in real-time
+- **Store Inspector**: Monitor global state stores (Redux, Zustand, etc.)
+- **Performance Monitor**: Track component render times and re-renders
+- **Network Monitor**: Monitor API requests and responses
+- **Environment Variable Control**: Enable/disable based on environment
+
+### Using the Developer Wrapper
+
+The Developer Wrapper is enabled by default in development mode. You can toggle the different tool panels using the buttons in the header. The wrapper can be enabled or disabled using the `USE_DEVELOPER_TOOLS` environment variable:
+
+```bash
+# Enable developer tools
+USE_DEVELOPER_TOOLS=true npm run dev
+
+# Disable developer tools
+USE_DEVELOPER_TOOLS=false npm run dev
+```
+
+For more details on using and customizing the Developer Wrapper, see the [Developer Wrapper documentation](src/components/DeveloperWrapper/README.md).
 
 ## Responsive Design Testing
 

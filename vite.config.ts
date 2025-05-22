@@ -20,4 +20,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Define environment variables with default values
+  define: {
+    // Enable developer tools by default in development mode
+    'import.meta.env.USE_DEVELOPER_TOOLS': JSON.stringify(
+      process.env.USE_DEVELOPER_TOOLS || 'true'
+    ),
+  },
 });
