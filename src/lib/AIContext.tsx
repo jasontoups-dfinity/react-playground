@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
 // Types for our context
-export type AIDisplayMode = 'overlay' | 'tray' | 'sidebar';
+export type AIDisplayMode = 'pageOverlay' | 'componentOverlay' | 'tray' | 'sidebar';
 
 export interface LLMRequest {
   prompt: string;
@@ -32,15 +32,18 @@ interface AIContextState {
   response: string | null;
   error: Error | null;
   config: AIConfig;
+  activeInstanceId: string | null;
 }
 
 interface AIContextValue extends AIContextState {
-  toggle: () => void;
+  toggle: (instanceId: string) => void;
   processData: (
-    data: Record<string, unknown> | unknown[] | string | number | boolean
+    data: Record<string, unknown> | unknown[] | string | number | boolean,
+    instanceId: string
   ) => Promise<void>;
   reset: () => void;
   setConfig: (config: Partial<AIConfig>) => void;
+  setActiveInstance: (instanceId: string) => void;
 }
 
 // Create the context with a default undefined value
@@ -54,7 +57,7 @@ export interface AIProviderProps {
 export const AIProvider: React.FC<AIProviderProps> = ({ children, initialConfig = {} }) => {
   // Default configuration
   const defaultConfig: AIConfig = {
-    displayMode: 'overlay',
+    displayMode: 'pageOverlay',
     prompt: 'Analyze this data: {data}',
     apiConfig: {
       endpoint: 'https://api.openai.com/v1/chat/completions',
@@ -71,24 +74,36 @@ export const AIProvider: React.FC<AIProviderProps> = ({ children, initialConfig 
     response: null,
     error: null,
     config: defaultConfig,
+    activeInstanceId: null,
   });
 
+  // Function to set the active instance
+  const setActiveInstance = (instanceId: string) => {
+    setState((prev) => ({
+      ...prev,
+      activeInstanceId: instanceId,
+    }));
+  };
+
   // Function to toggle the AI panel
-  const toggle = () => {
+  const toggle = (instanceId: string) => {
     setState((prev) => ({
       ...prev,
       isOpen: !prev.isOpen,
+      activeInstanceId: prev.isOpen ? null : instanceId, // Clear active instance when closing
     }));
   };
 
   // Function to process data with the LLM
   const processData = async (
-    data: Record<string, unknown> | unknown[] | string | number | boolean
+    data: Record<string, unknown> | unknown[] | string | number | boolean,
+    instanceId: string
   ) => {
     setState((prev) => ({
       ...prev,
       status: 'loading',
       isOpen: true,
+      activeInstanceId: instanceId,
     }));
 
     try {
@@ -148,6 +163,7 @@ export const AIProvider: React.FC<AIProviderProps> = ({ children, initialConfig 
     processData,
     reset,
     setConfig,
+    setActiveInstance,
   };
 
   return <AIContext.Provider value={contextValue}>{children}</AIContext.Provider>;

@@ -4,7 +4,7 @@ The AIWrapper component is a flexible React component that adds AI analysis capa
 
 ## Features
 
-- **Multiple Display Modes**: Choose between overlay, tray, or sidebar display modes for AI responses
+- **Multiple Display Modes**: Choose between pageOverlay, componentOverlay, tray, or sidebar display modes for AI responses
 - **Customizable Prompts**: Define specific prompts for different types of data analysis
 - **Automatic Data Extraction**: Extracts data from child components using data attributes and form elements
 - **Typewriter Effect**: Displays AI responses with a typewriter effect for better readability
@@ -43,7 +43,7 @@ function App() {
 function YourComponent() {
   return (
     <AIWrapper
-      displayMode="overlay"
+      displayMode="pageOverlay"
       prompt="Analyze this data and provide insights."
       buttonPosition="top-right">
       <YourExistingComponent />
@@ -78,7 +78,7 @@ You can customize how data is extracted and transformed using the `dataSelector`
 
 ```jsx
 <AIWrapper
-  displayMode="overlay"
+  displayMode="componentOverlay"
   prompt="Analyze this customer data."
   dataSelector={(data) => {
     // Transform or filter the extracted data
@@ -98,7 +98,7 @@ You can customize how data is extracted and transformed using the `dataSelector`
 | Prop             | Type                                                         | Default                     | Description                                        |
 | ---------------- | ------------------------------------------------------------ | --------------------------- | -------------------------------------------------- |
 | `children`       | ReactNode                                                    | (required)                  | The component to wrap with AI capabilities         |
-| `displayMode`    | 'overlay' \| 'tray' \| 'sidebar'                             | 'overlay'                   | How the AI response should be displayed            |
+| `displayMode`    | 'pageOverlay' \| 'componentOverlay' \| 'tray' \| 'sidebar'   | 'pageOverlay'               | How the AI response should be displayed            |
 | `prompt`         | string                                                       | 'Analyze this data: {data}' | The prompt template to use for the LLM             |
 | `dataSelector`   | function                                                     | (data) => data              | Function to extract and transform data             |
 | `apiConfig`      | object                                                       | undefined                   | Configuration for the API endpoint                 |
@@ -132,29 +132,39 @@ USE_DEVELOPER_TOOLS=true
 
 ## Examples
 
-### Customer Profile Analysis
+### Customer Profile Analysis (Page Overlay)
 
 ```jsx
 <AIWrapper
-  displayMode="overlay"
+  displayMode="pageOverlay"
   prompt="Analyze this customer data and provide insights about their purchasing behavior.">
   <CustomerProfile data={customerData} />
 </AIWrapper>
 ```
 
-### Feedback Form Analysis
+### Feedback Form Analysis (Component Overlay)
 
 ```jsx
-<AIWrapper displayMode="tray" prompt="Analyze this feedback and suggest how to respond.">
+<AIWrapper
+  displayMode="componentOverlay"
+  prompt="Analyze this feedback and suggest how to respond.">
   <FeedbackForm />
 </AIWrapper>
 ```
 
-### Text Content Analysis
+### Text Content Analysis (Tray)
 
 ```jsx
-<AIWrapper displayMode="sidebar" prompt="Summarize this text and identify key points.">
+<AIWrapper displayMode="tray" prompt="Summarize this text and identify key points.">
   <TextContent />
+</AIWrapper>
+```
+
+### Sidebar Example
+
+```jsx
+<AIWrapper displayMode="sidebar" prompt="Provide detailed analysis of this content.">
+  <DetailedContent />
 </AIWrapper>
 ```
 

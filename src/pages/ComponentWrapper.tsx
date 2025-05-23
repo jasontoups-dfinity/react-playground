@@ -167,25 +167,25 @@ const ComponentWrapper: React.FC = () => {
           analyze its data.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          {/* Customer Profile with AI Wrapper */}
+          {/* Customer Profile with AI Wrapper - Page Overlay */}
           <AIWrapper
-            displayMode="overlay"
+            displayMode="pageOverlay"
             prompt="Analyze this customer data and provide insights about their purchasing behavior and preferences. Suggest potential products they might be interested in based on their history."
             buttonPosition="top-right">
             <CustomerProfile data={customerData} />
           </AIWrapper>
 
-          {/* Feedback Form with AI Wrapper */}
+          {/* Feedback Form with AI Wrapper - Component Overlay */}
           <AIWrapper
-            displayMode="tray"
+            displayMode="componentOverlay"
             prompt="Analyze this feedback form data and summarize the customer's sentiment. Provide suggestions for how to respond to this feedback."
             buttonPosition="top-right">
             <FeedbackForm />
           </AIWrapper>
 
-          {/* Simple Text Component with AI Wrapper */}
+          {/* Simple Text Component with AI Wrapper - Tray */}
           <AIWrapper
-            displayMode="sidebar"
+            displayMode="tray"
             prompt="Summarize this text and identify key points."
             buttonPosition="top-right">
             <div className="bg-card p-6 rounded-lg shadow-sm">

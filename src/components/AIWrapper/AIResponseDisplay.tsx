@@ -15,21 +15,25 @@ const AIResponseDisplay: React.FC<AIResponseDisplayProps> = ({
 }) => {
   // Determine the container classes based on the display mode
   const containerClasses = {
-    overlay: 'fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50',
+    pageOverlay: 'fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50',
+    componentOverlay:
+      'absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-10',
     tray: 'absolute bottom-0 left-0 right-0 bg-card shadow-lg rounded-t-lg z-40',
     sidebar: 'absolute top-0 bottom-0 right-0 w-80 bg-card shadow-lg z-40',
   };
 
   // Determine the content classes based on the display mode
   const contentClasses = {
-    overlay: 'bg-card p-6 rounded-lg shadow-lg max-w-2xl w-full max-h-[80vh] overflow-auto',
+    pageOverlay: 'bg-card p-6 rounded-lg shadow-lg max-w-2xl w-full max-h-[80vh] overflow-auto',
+    componentOverlay: 'bg-card p-6 rounded-lg shadow-lg w-[90%] max-h-[90%] overflow-auto',
     tray: 'p-4 max-h-[50vh] overflow-auto',
     sidebar: 'p-4 h-full overflow-auto',
   };
 
   // Animation classes for each mode
   const animationClasses = {
-    overlay: 'animate-fade-in',
+    pageOverlay: 'animate-fade-in',
+    componentOverlay: 'animate-fade-in',
     tray: 'animate-slide-up',
     sidebar: 'animate-slide-in-right',
   };

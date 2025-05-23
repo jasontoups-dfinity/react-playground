@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useId } from 'react';
+import { createPortal } from 'react-dom';
 import { useAI } from '../../lib/AIContext';
 import { cn } from '../../lib/utils';
 import AITriggerButton from './AITriggerButton';
@@ -7,7 +8,7 @@ import type { AIWrapperProps } from './types';
 
 const AIWrapper: React.FC<AIWrapperProps> = ({
   children,
-  displayMode = 'overlay',
+  displayMode = 'pageOverlay',
   prompt = 'Analyze this data: {data}',
   dataSelector = (data) => data,
   apiConfig,
@@ -15,9 +16,16 @@ const AIWrapper: React.FC<AIWrapperProps> = ({
   typingSpeed = 30,
   className,
 }) => {
-  const { isOpen, status, response, toggle, processData, reset, setConfig } = useAI();
+  // Generate a unique ID for this instance
+  const instanceId = useId();
+
+  const { isOpen, status, response, toggle, processData, reset, setConfig, activeInstanceId } =
+    useAI();
 
   const childRef = useRef<HTMLDivElement>(null);
+
+  // Check if this instance is the active one
+  const isActive = activeInstanceId === instanceId;
 
   // Update the AI context configuration when props change
   useEffect(() => {
@@ -73,13 +81,13 @@ const AIWrapper: React.FC<AIWrapperProps> = ({
     // Process the data with the dataSelector function
     const processedData = dataSelector(extractedData);
 
-    // Send the data to the AI
-    await processData(processedData);
+    // Send the data to the AI with this instance's ID
+    await processData(processedData, instanceId);
   };
 
   // Handle close
   const handleClose = () => {
-    toggle();
+    toggle(instanceId);
     setTimeout(() => {
       reset();
     }, 300); // Wait for animation to complete
@@ -97,7 +105,8 @@ const AIWrapper: React.FC<AIWrapperProps> = ({
         isLoading={status === 'loading'}
       />
 
-      {isOpen && (
+      {/* For non-pageOverlay modes, render directly in the component tree */}
+      {isOpen && isActive && displayMode !== 'pageOverlay' && (
         <AIResponseDisplay
           mode={displayMode}
           status={status}
@@ -106,6 +115,21 @@ const AIWrapper: React.FC<AIWrapperProps> = ({
           onClose={handleClose}
         />
       )}
+
+      {/* For pageOverlay mode, use createPortal to render at the document body level */}
+      {isOpen &&
+        isActive &&
+        displayMode === 'pageOverlay' &&
+        createPortal(
+          <AIResponseDisplay
+            mode={displayMode}
+            status={status}
+            response={response}
+            typingSpeed={typingSpeed}
+            onClose={handleClose}
+          />,
+          document.body
+        )}
     </div>
   );
 };
