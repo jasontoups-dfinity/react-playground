@@ -30,13 +30,15 @@ export interface AIWrapperProps {
   ) => Record<string, unknown> | unknown[] | string | number | boolean;
 
   /**
-   * Configuration for the API
-   * If provided, all fields must be included
+   * Configuration for the LLM API
    */
   apiConfig?: {
-    endpoint: string;
-    apiKey: string;
+    endpoint?: string;
+    apiKey?: string;
     model: string;
+    provider?: 'anthropic' | 'openai' | 'simulation';
+    temperature?: number;
+    maxTokens?: number;
   };
 
   /**

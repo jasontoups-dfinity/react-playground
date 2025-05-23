@@ -32,7 +32,13 @@ const AIWrapper: React.FC<AIWrapperProps> = ({
     setConfig({
       displayMode,
       prompt,
-      ...(apiConfig && { apiConfig }),
+      ...(apiConfig && {
+        llmConfig: {
+          ...apiConfig,
+          // Ensure provider is set if not provided
+          provider: apiConfig.provider || 'anthropic',
+        },
+      }),
     });
   }, [displayMode, prompt, apiConfig]); // Removed setConfig from dependencies to prevent infinite loop
 
@@ -75,14 +81,20 @@ const AIWrapper: React.FC<AIWrapperProps> = ({
 
   // Handle AI button click
   const handleAIRequest = async () => {
+    console.log('AIWrapper: handleAIRequest called', { instanceId });
+
     // Extract data from the child component
     const extractedData = extractData();
+    console.log('AIWrapper: extracted data', extractedData);
 
     // Process the data with the dataSelector function
     const processedData = dataSelector(extractedData);
+    console.log('AIWrapper: processed data', processedData);
 
     // Send the data to the AI with this instance's ID
+    console.log('AIWrapper: calling processData with instanceId', instanceId);
     await processData(processedData, instanceId);
+    console.log('AIWrapper: processData completed');
   };
 
   // Handle close

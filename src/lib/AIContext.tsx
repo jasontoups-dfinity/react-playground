@@ -1,28 +1,21 @@
 import React, { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
+import { anthropicClient } from './api';
+import type { ApiProviderType, AnthropicRequest } from './api';
 
 // Types for our context
 export type AIDisplayMode = 'pageOverlay' | 'componentOverlay' | 'tray' | 'sidebar';
 
-export interface LLMRequest {
-  prompt: string;
-  data: Record<string, unknown> | unknown[] | string | number | boolean;
-  model: string;
-}
-
-export interface LLMResponse {
-  text: string;
-  tokens: number;
-  model: string;
-}
-
 export interface AIConfig {
   displayMode: AIDisplayMode;
   prompt: string;
-  apiConfig: {
-    endpoint: string;
-    apiKey: string;
+  llmConfig: {
+    provider: ApiProviderType;
     model: string;
+    endpoint?: string;
+    apiKey?: string;
+    temperature?: number;
+    maxTokens?: number;
   };
 }
 
@@ -55,17 +48,37 @@ export interface AIProviderProps {
 }
 
 export const AIProvider: React.FC<AIProviderProps> = ({ children, initialConfig = {} }) => {
-  // Default configuration
-  const defaultConfig: AIConfig = {
-    displayMode: 'pageOverlay',
-    prompt: 'Analyze this data: {data}',
-    apiConfig: {
-      endpoint: 'https://api.openai.com/v1/chat/completions',
-      apiKey: '',
-      model: 'gpt-4',
-    },
-    ...initialConfig,
+  // Create the default configuration with proper merging of nested objects
+  const createDefaultConfig = (): AIConfig => {
+    const baseConfig: AIConfig = {
+      displayMode: 'pageOverlay',
+      prompt: 'Analyze this data: {data}',
+      llmConfig: {
+        provider: 'anthropic', // Use Anthropic provider with our proxy server
+        model: 'claude-3-haiku-20240307',
+        temperature: 0.7,
+        maxTokens: 1000,
+      },
+    };
+
+    // If no initialConfig, return the base config
+    if (Object.keys(initialConfig).length === 0) {
+      return baseConfig;
+    }
+
+    // Create a new config with the merged values
+    return {
+      ...baseConfig,
+      ...initialConfig,
+      // Properly merge the nested llmConfig object if it exists
+      llmConfig: initialConfig.llmConfig
+        ? { ...baseConfig.llmConfig, ...initialConfig.llmConfig }
+        : baseConfig.llmConfig,
+    };
   };
+
+  // Default configuration
+  const defaultConfig = createDefaultConfig();
 
   // State for the AI context
   const [state, setState] = useState<AIContextState>({
@@ -99,39 +112,46 @@ export const AIProvider: React.FC<AIProviderProps> = ({ children, initialConfig 
     data: Record<string, unknown> | unknown[] | string | number | boolean,
     instanceId: string
   ) => {
+    console.log('AIContext: processData called', { instanceId, data });
+
     setState((prev) => ({
       ...prev,
       status: 'loading',
       isOpen: true,
       activeInstanceId: instanceId,
     }));
+    console.log('AIContext: state updated to loading');
 
     try {
-      // Replace placeholders in the prompt
-      const filledPrompt = state.config.prompt.replace('{data}', JSON.stringify(data));
-
       // Create the request
-      const request: LLMRequest = {
-        prompt: filledPrompt,
+      const request: AnthropicRequest = {
+        prompt: state.config.prompt,
         data,
-        model: state.config.apiConfig.model,
+        model: state.config.llmConfig.model,
+        temperature: state.config.llmConfig.temperature,
+        maxTokens: state.config.llmConfig.maxTokens,
       };
+      console.log('AIContext: request created', request);
 
-      // This would be replaced with an actual API call
-      // For now, we'll simulate a response
-      const response = await simulateLLMResponse(request);
+      // Send the request to the provider
+      console.log('AIContext: sending request to Anthropic provider');
+      const response = await anthropicClient.sendMessage(request);
+      console.log('AIContext: received response', response);
 
       setState((prev) => ({
         ...prev,
         status: 'success',
         response: response.text,
       }));
+      console.log('AIContext: state updated to success');
     } catch (error) {
+      console.error('AIContext: error processing data', error);
       setState((prev) => ({
         ...prev,
         status: 'error',
         error: error instanceof Error ? error : new Error('Unknown error'),
       }));
+      console.log('AIContext: state updated to error');
     }
   };
 
@@ -176,51 +196,4 @@ export const useAI = (): AIContextValue => {
     throw new Error('useAI must be used within an AIProvider');
   }
   return context;
-};
-
-// Temporary function to simulate an LLM response
-// This would be replaced with an actual API call in production
-const simulateLLMResponse = async (request: LLMRequest): Promise<LLMResponse> => {
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 1500));
-
-  // Generate a response based on the data
-  const data = request.data;
-  let responseText = '';
-
-  if (typeof data === 'object') {
-    responseText = `Here's an analysis of the provided data:\n\n`;
-
-    // If it's an array, summarize the items
-    if (Array.isArray(data)) {
-      responseText += `The data contains ${data.length} items.\n\n`;
-
-      // Sample a few items
-      const sampleSize = Math.min(3, data.length);
-      responseText += `Sample items:\n`;
-      for (let i = 0; i < sampleSize; i++) {
-        responseText += `- ${JSON.stringify(data[i])}\n`;
-      }
-    }
-    // If it's an object, summarize the keys and values
-    else {
-      const keys = Object.keys(data);
-      responseText += `The data contains ${keys.length} properties.\n\n`;
-
-      responseText += `Properties:\n`;
-      keys.forEach((key) => {
-        responseText += `- ${key}: ${JSON.stringify(data[key])}\n`;
-      });
-    }
-
-    responseText += `\nBased on this data, I can provide further insights if needed.`;
-  } else {
-    responseText = `I've analyzed the data: "${data}". This appears to be a simple value. Please provide more context if you'd like a more detailed analysis.`;
-  }
-
-  return {
-    text: responseText,
-    tokens: responseText.length / 4, // Rough estimate of tokens
-    model: request.model,
-  };
 };

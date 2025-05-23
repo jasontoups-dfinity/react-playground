@@ -4,14 +4,31 @@ This document captures the current state, recent changes, and active development
 
 ## Current Focus
 
-The current development focus is on ensuring proper integration and configuration of Tailwind CSS v4 and ShadCN UI components. This includes:
+The current development focus is on ensuring proper integration and configuration of Tailwind CSS v4, ShadCN UI components, and AI integration. This includes:
 
 1. Resolving Tailwind CSS v4 configuration issues
 2. Setting up the proper project structure for scalability
 3. Documenting the template for easy onboarding
 4. Creating example components to demonstrate usage patterns
+5. Implementing AI integration with LLM providers
 
 ## Recent Changes
+
+### API Request Handling Architecture
+
+We've implemented a comprehensive solution for handling API requests in our React application:
+
+1. **Express Server**: Set up an Express server to handle API requests in both development and production environments
+2. **API Client Library**: Created a client-side library in src/lib/api/ to abstract away the details of making API requests
+3. **Environment-specific Configuration**: Configured the API client to use different endpoints based on the environment
+4. **AIWrapper Component**: Updated the AIWrapper component to use the new API client
+
+This architecture provides several benefits:
+
+- Solves CORS issues by proxying requests through the Express server
+- Secures API keys by keeping them on the server side
+- Provides a clean, consistent API for making requests
+- Centralizes API request logic, making it easier to maintain and update
 
 ### ShadCN UI Configuration
 
@@ -115,6 +132,7 @@ We've enhanced the project documentation:
 1. Added ShadCN UI Vite installation instructions to `memory-bank/official-documentation/shadcn.md`
 2. Updated `.clinerules` with detailed instructions for adding ShadCN components
 3. Updated progress tracking to reflect recent changes
+4. Added API request handling architecture documentation
 
 ### Project Structure Setup
 
@@ -123,7 +141,8 @@ We've established a clear project structure:
 - `/src/components/ui/` for ShadCN UI components
 - `/src/components/` for custom components
 - `/src/pages/` for page components
-- `/src/lib/` for utility functions
+- `/src/lib/` for utility functions and context providers
+- `/src/lib/api/` for API client library
 - `/memory-bank/` for project documentation
 
 ### Documentation
@@ -133,8 +152,20 @@ We're actively documenting the project to ensure it's easy for teams to use:
 1. Creating comprehensive memory bank documentation
 2. Adding inline code comments
 3. Setting up example components with usage documentation
+4. Documenting architectural decisions and patterns
 
 ## Active Decisions
+
+### API Request Handling Strategy
+
+We're using a hybrid approach to API request handling:
+
+1. Express server for handling API requests in both development and production
+2. Client-side API library for abstracting away the details of making requests
+3. Environment-specific configuration for different endpoints
+4. Secure handling of API keys on the server side
+
+This approach provides security, flexibility, and maintainability.
 
 ### CSS Organization Strategy
 
@@ -176,9 +207,11 @@ We're configuring the project as a GitHub Template with:
 4. ✅ Update ShadCN UI documentation
 5. ✅ Configure ShadCN UI import aliases
 6. ✅ Create Developer Wrapper component with developer tools
-7. 🔄 Add more ShadCN UI component examples
-8. ⬜ Create a component showcase page
-9. ⬜ Add more detailed comments to key files
+7. ✅ Implement API client library for LLM providers
+8. ✅ Set up Express proxy server for API requests
+9. 🔄 Add more ShadCN UI component examples
+10. ⬜ Create a component showcase page
+11. ⬜ Add more detailed comments to key files
 
 ### Medium-term Tasks
 
@@ -203,18 +236,21 @@ We're configuring the project as a GitHub Template with:
 3. **Documentation Completeness**: Creating comprehensive yet concise documentation
 4. **Balancing Flexibility and Simplicity**: Making the template flexible enough for various use cases while keeping it simple
 5. **Browser Compatibility**: Ensuring consistent behavior across different browsers, especially for features like document title management
+6. **API Security**: Ensuring secure handling of API keys and sensitive data
 
 ## Active Experiments
 
 1. **Component Variants**: Exploring different approaches to component variants
 2. **Styling Patterns**: Testing different approaches to styling components
 3. **Project Structure**: Evaluating the current project structure for scalability
+4. **API Integration Patterns**: Exploring different approaches to integrating with external APIs
 
 ## Team Collaboration
 
 - **Design Team**: Collaborating on design tokens and component specifications
 - **Frontend Team**: Implementing components and addressing technical challenges
 - **Documentation Team**: Creating comprehensive documentation
+- **Backend Team**: Setting up API proxy server and handling authentication
 
 ## Recent Meetings and Decisions
 
@@ -243,6 +279,22 @@ We're configuring the project as a GitHub Template with:
 - **2025-05-21**: Enhanced visual distinction between layout and browser width with ContentContainer component and width indicator
 - **2025-05-21**: Updated README.md with comprehensive project description, features, and usage instructions
 - **2025-05-21**: Enhanced README.md with detailed explanation of the Page Width Control feature for responsive design testing
+- **2025-05-22**: Created comprehensive Developer Wrapper component with developer tools
+- **2025-05-22**: Implemented State Inspector for component state visualization
+- **2025-05-22**: Added Store Inspector for global state monitoring
+- **2025-05-22**: Created Performance Monitor for tracking component render times
+- **2025-05-22**: Implemented Network Monitor for tracking API requests
+- **2025-05-22**: Added environment variable control for enabling/disabling developer tools
+- **2025-05-22**: Updated App component to use the new Developer Wrapper
+- **2025-05-22**: Created detailed documentation for the Developer Wrapper component
+- **2025-05-22**: Added resizable panels with draggable handles to the Developer Wrapper
+- **2025-05-22**: Enhanced resize handles with improved visual indicators and larger grab areas
+- **2025-05-22**: Added active state styling to resize handles for better user feedback during resizing
+- **2025-05-23**: Created AIWrapper component for AI-powered analysis
+- **2025-05-23**: Implemented API client library for LLM providers
+- **2025-05-23**: Set up Express proxy server for API requests
+- **2025-05-23**: Configured environment-specific API endpoints
+- **2025-05-23**: Added documentation for API request handling architecture
 
 ## Implemented Feature: Page Width Control
 
@@ -345,5 +397,58 @@ We've implemented a comprehensive Developer Wrapper component that provides a su
   - Designed for easy adoption in other projects
 
 This feature provides a powerful set of tools for developers to debug and monitor their React applications, making development faster and more efficient.
+
+## Implemented Feature: AI Integration
+
+We've implemented AI integration with LLM providers to enable AI-powered analysis and assistance in the React Playground.
+
+### Feature Overview
+
+1. **AIWrapper Component**
+
+   - Create a wrapper component that provides AI-powered analysis
+   - Support for different display modes: pageOverlay, componentOverlay, tray, sidebar
+   - Configurable prompt and LLM settings
+
+2. **AI Context**
+
+   - Create a context to manage the state of AI interactions
+   - Control the visibility and behavior of the AI interface
+   - Handle API requests and responses
+
+3. **API Client Library**
+   - Create a client-side library for making API requests to LLM providers
+   - Support for different providers: Anthropic, OpenAI, etc.
+   - Environment-specific configuration for different endpoints
+
+### Implementation Details
+
+- **Component Structure**:
+
+  - AIWrapper: Main wrapper component
+  - AITriggerButton: Button to trigger AI analysis
+  - AIResponseDisplay: Component to display AI responses
+  - AIResponseSkeleton: Loading state for AI responses
+  - TypewriterText: Animated text display for AI responses
+
+- **API Client Library**:
+
+  - BaseApiClient: Abstract base class for API clients
+  - AnthropicClient: Client for Anthropic API
+  - Environment-specific configuration for different endpoints
+
+- **Express Proxy Server**:
+
+  - Set up an Express server to handle API requests
+  - Proxy requests to external APIs like Anthropic
+  - Add necessary headers and handle CORS issues
+  - Keep API keys secure on the server side
+
+- **Integration**:
+  - Updated App component to use the AIProvider
+  - Created comprehensive documentation for usage and customization
+  - Designed for easy adoption in other projects
+
+This feature provides AI-powered analysis and assistance to developers, making it easier to understand and work with complex data and code.
 
 This active context will be updated regularly as the project evolves.
