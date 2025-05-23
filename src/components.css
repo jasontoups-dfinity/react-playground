@@ -1,0 +1,5 @@
+/* Component-specific styles */
+/* Only select CSS Classes here */
+/* Selecting CORE HTML Elements within classes is fine. 
+    But we should be limiting declaring CSS styles, in favor of using Tailwind classes. 
+*/

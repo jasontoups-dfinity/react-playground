@@ -2,3 +2,10 @@
 @import 'tailwindcss';
 
 /* All styles have been moved to globals.css for better theme management */
+
+/* This file is the main entry point for all styles */
+/* Import global and component styles before Tailwind directives */
+@import './globals.css';
+@import './components.css';
+
+/* Tailwind directives are automatically included with @import 'tailwindcss'; */
