@@ -52,7 +52,8 @@ export const AIProvider: React.FC<AIProviderProps> = ({ children, initialConfig 
   const createDefaultConfig = (): AIConfig => {
     const baseConfig: AIConfig = {
       displayMode: 'pageOverlay',
-      prompt: 'Analyze this data: {data}',
+      prompt:
+        'Here is some user data: {data}. Please analyze this data and provide a summary of the key information.',
       llmConfig: {
         provider: 'anthropic', // Use Anthropic provider with our proxy server
         model: 'claude-3-haiku-20240307',
@@ -132,6 +133,8 @@ export const AIProvider: React.FC<AIProviderProps> = ({ children, initialConfig 
         maxTokens: state.config.llmConfig.maxTokens,
       };
       console.log('AIContext: request created', request);
+      console.log('AIContext: prompt template', state.config.prompt);
+      console.log('AIContext: data being sent', data);
 
       // Send the request to the provider
       console.log('AIContext: sending request to Anthropic provider');

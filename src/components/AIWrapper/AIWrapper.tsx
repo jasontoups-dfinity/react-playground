@@ -9,7 +9,7 @@ import type { AIWrapperProps } from './types';
 const AIWrapper: React.FC<AIWrapperProps> = ({
   children,
   displayMode = 'pageOverlay',
-  prompt = 'Analyze this data: {data}',
+  prompt = 'Here is some user data: {data}. Please analyze this data and provide a summary of the key information.',
   dataSelector = (data) => data,
   apiConfig,
   buttonPosition = 'top-right',

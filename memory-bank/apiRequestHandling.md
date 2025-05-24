@@ -166,9 +166,43 @@ This architecture provides several benefits:
 - **Clean API**: Provides a clean, consistent API for making requests.
 - **Maintainable**: Centralizes API request logic, making it easier to maintain and update.
 
+## Prompt Formatting for Different Data Types
+
+When working with LLM APIs, it's important to format prompts appropriately based on the type of data being sent. We've identified and addressed an issue with our default prompt:
+
+### Issue
+
+Our initial prompt was: `"Analyze this data: {data}"` which was too generic when sending structured data like JSON objects. This resulted in the LLM responding that it didn't have any text to summarize, as it was expecting text content rather than structured data.
+
+### Solution
+
+We've updated the default prompt to be more specific about the type of data being sent and what we want the LLM to do with it:
+
+```typescript
+prompt: 'Here is some user data: {data}. Please analyze this data and provide a summary of the key information.';
+```
+
+### Best Practices for Prompt Formatting
+
+1. **Be Specific About Data Type**: Clearly indicate what type of data you're sending (e.g., "user data", "product information", "log entries")
+2. **Provide Clear Instructions**: Tell the LLM exactly what you want it to do with the data
+3. **Consider Data Structure**: Format prompts differently based on whether you're sending structured data (JSON), text, or other formats
+4. **Test Different Prompts**: Experiment with different prompt formats to find what works best for your use case
+
+### Example Prompts for Different Data Types
+
+- **JSON Data**: "Here is some user data in JSON format: {data}. Please analyze this data and provide a summary of the key user information."
+- **Text Content**: "Here is an article: {data}. Please summarize the main points and key takeaways."
+- **Code**: "Here is some JavaScript code: {data}. Please explain what this code does and suggest any improvements."
+- **Logs**: "Here are some application logs: {data}. Please identify any errors or unusual patterns."
+
+By tailoring prompts to the specific data type and desired outcome, we can get more accurate and useful responses from LLMs.
+
 ## Future Considerations
 
 - **Caching**: Add caching for API responses to improve performance and reduce costs.
 - **Rate Limiting**: Implement rate limiting to prevent abuse and manage costs.
 - **Monitoring**: Add monitoring and logging to track API usage and errors.
 - **Authentication**: Add user authentication for APIs that require it.
+- **Prompt Templates**: Create a library of prompt templates for different data types and use cases.
+- **Response Formatting**: Add options for formatting LLM responses (e.g., JSON, markdown, HTML).

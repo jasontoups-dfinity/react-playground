@@ -224,6 +224,8 @@ This document tracks the development progress of the React Playground template, 
 - **2025-05-23**: Set up Express proxy server for API requests
 - **2025-05-23**: Configured environment-specific API endpoints
 - **2025-05-23**: Added documentation for API request handling architecture
+- **2025-05-23**: Fixed LLM prompt issue by updating the default prompt to better handle structured data
+- **2025-05-23**: Fixed prompt consistency issue between AIContext and AIWrapper components
 
 ## Next Actions
 

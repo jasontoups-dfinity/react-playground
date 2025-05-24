@@ -16,7 +16,7 @@ export interface AIWrapperProps {
   /**
    * The prompt template to use for the LLM
    * Use {data} as a placeholder for the extracted data
-   * @default 'Analyze this data: {data}'
+   * @default 'Here is some user data: {data}. Please analyze this data and provide a summary of the key information.'
    */
   prompt?: string;
 
